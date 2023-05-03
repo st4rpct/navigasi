@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:navigasi/routes.dart';
+import 'package:navigasi/firstscreen.dart';
+import 'package:navigasi/secondscreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      onGenerateRoute: RouteGenerator.generateRoute,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => FirstScreen(),
+        '/second': (context) => SecondScreen()
+      },
     );
   }
 }

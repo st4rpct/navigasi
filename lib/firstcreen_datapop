@@ -4,6 +4,17 @@ import 'package:navigasi/secondscreen.dart';
 class FirstScreen extends StatelessWidget {
   const FirstScreen({super.key});
 
+  Future<void> _navigateScreen(BuildContext context) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SecondScreen()),
+    );
+
+    ScaffoldMessenger.of(context)
+      ..removeCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text('$result')));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,8 +25,7 @@ class FirstScreen extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/second',
-                  arguments: 'Text dari First Scrren');
+              _navigateScreen(context);
             },
             child: Text("Menuju Layar Kedua")),
       ),
